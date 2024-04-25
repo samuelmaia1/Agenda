@@ -1,0 +1,45 @@
+*{
+    list-style-type: none;
+}
+
+#form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 15px;
+}
+
+.input-form{
+    width: 300px;
+}
+
+.li-contato{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-left: 15px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+}
+
+span{
+    font-weight: 600;
+}
+
+.btn-warning, .btn-danger{
+    width: 100px;
+    margin-bottom: 15px;
+}
+
+.div-confirmacao{
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.botao-sim, .botao-nao{
+    border: 1px solid black;
+}
