@@ -150,3 +150,5 @@ function recuperaLista() {
         console.log(typeof item)
     }
 }
+
+recuperaLista()
