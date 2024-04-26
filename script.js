@@ -21,7 +21,6 @@ document.addEventListener('click', function(e){
         const div = criaDivConfirmacao()
         const elementoPai = elemento.parentElement
         elementoPai.appendChild(div)
-        salvaLista()
     }
 })
 
@@ -34,6 +33,7 @@ document.addEventListener('click', function(e){
     if (elemento.classList.contains('botao-nao')){
         elemento.parentElement.remove()
     }
+    salvaLista()
 })
 
 function criaContato(){
@@ -43,10 +43,12 @@ function criaContato(){
     }
     if (!inputContato.value){
         alert('Favor preencher o campo "Contato"')
+        return
     }
+
     const contato = {
         nome: inputNome.value,
-        contato: inputContato.value
+        contato: inputContato.value 
     }
 
     listaContatos.push(contato)
@@ -64,6 +66,15 @@ function setContato(contato){
     criaBtnEditar(li)
     criaBtnExcluir(li)
     return li
+}
+
+function modelaNumero(numero){
+    numero.splice(2, 0, ')')
+    numero.splice(3, 0, ' ')
+    numero.splice(5, 0, ' ')
+    numero.splice(10, 0, '-')
+    numero.unshift('(')
+    return numero
 }
 
 function criaBtnExcluir(contato){
@@ -113,6 +124,10 @@ function limpaImput() {
     inputNome.focus()
 }
 
+function formataNumero(contato){
+
+}
+
 function salvaLista() {
     let listaJSON = []
 
@@ -132,8 +147,6 @@ function recuperaLista() {
     for (let contato of contatosRecuperados){
         const item = setContato(contato)
         lista.appendChild(item)
-        console.log(item)
+        console.log(typeof item)
     }
 }
-
-recuperaLista()
