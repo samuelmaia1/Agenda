@@ -36,6 +36,23 @@ document.addEventListener('click', function(e){
     salvaLista()
 })
 
+document.addEventListener('click', function(e){
+    const elemento = e.target
+    if (elemento.classList.contains('editar')){
+        const formEdicao = criaFormEdicao()
+        const elementoPai = elemento.parentElement
+        elementoPai.appendChild(formEdicao)
+    }
+})
+
+document.addEventListener('click', function(e){
+    e.preventDefault()
+    const elemento = e.target
+    if (elemento.classList.contains('salvar')){
+       editaContato()
+    }
+})
+
 function criaContato(){
     if (!inputNome.value){
         alert('Favor preencher o campo "Nome"')
@@ -68,13 +85,13 @@ function setContato(contato){
     return li
 }
 
-function modelaNumero(numero){
-    numero.splice(2, 0, ')')
-    numero.splice(3, 0, ' ')
-    numero.splice(5, 0, ' ')
-    numero.splice(10, 0, '-')
-    numero.unshift('(')
-    return numero
+function editaContato(antigoContato){
+    let inputNomeNovo = document.querySelector('.nome-novo')
+    let inputContatoNovo = document.querySelector('contato-novo')
+    antigoContato.nome = inputNomeNovo.value
+    antigoContato.contato = inputContatoNovo.value
+    criaContato(antigoContato)
+    setContato(antigoContato)
 }
 
 function criaBtnExcluir(contato){
@@ -95,6 +112,15 @@ function criaBtnEditar(contato){
     btnEditar.innerText = 'Editar'
     contato.appendChild(btnEditar)
     return btnEditar
+}
+
+function criaBtnSalvar(){
+    const botaoSalvar = document.createElement('button')
+    botaoSalvar.classList.add('btn')
+    botaoSalvar.classList.add('btn-primary')
+    botaoSalvar.classList.add('salvar')
+    botaoSalvar.innerText = 'Salvar'
+    return botaoSalvar
 }
 
 function criaDivConfirmacao() {
@@ -118,14 +144,26 @@ function criaDivConfirmacao() {
         return div
 }
 
+function criaFormEdicao(){
+    const form = document.createElement('form')
+    form.classList.add('form-edicao')
+    const inputNomeNovo = document.createElement('input')
+    inputNomeNovo.classList.add('nome-novo')
+    inputNomeNovo.setAttribute('placeholder','Novo nome')
+    const inputContatoNovo = document.createElement('input')
+    inputContatoNovo.classList.add('contato-novo')
+    inputContatoNovo.setAttribute('placeholder','Novo número')
+    const botaoSalvar = criaBtnSalvar()
+    form.appendChild(inputNomeNovo)
+    form.appendChild(inputContatoNovo)
+    form.appendChild(botaoSalvar)
+    return form
+}
+
 function limpaImput() {
     inputContato.value = ''
     inputNome.value = ''
     inputNome.focus()
-}
-
-function formataNumero(contato){
-
 }
 
 function salvaLista() {
@@ -147,7 +185,6 @@ function recuperaLista() {
     for (let contato of contatosRecuperados){
         const item = setContato(contato)
         lista.appendChild(item)
-        console.log(typeof item)
     }
 }
 

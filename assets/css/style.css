@@ -43,3 +43,9 @@ span{
 .botao-sim, .botao-nao{
     border: 1px solid black;
 }
+
+.form-edicao{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
