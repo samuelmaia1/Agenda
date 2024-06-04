@@ -6,6 +6,8 @@ const lista = document.querySelector('#lista')
 
 let listaContatos = []
 
+let listaDivs = [criaDivConfirmacao(),criaDivConfirmacao(),criaDivConfirmacao(),criaDivConfirmacao()]
+
 botaoAdd.addEventListener('click', function(e){
     e.preventDefault()
     const contato = criaContato()
